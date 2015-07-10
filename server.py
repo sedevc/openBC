@@ -132,4 +132,4 @@ while True:
 				FAN.deactivate_contactor()
 		# RESET/AUTO/MAN MODE
 	# EMERGENCY STOP
-# INFINITI LOOP
+# INFINITE LOOP
