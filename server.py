@@ -20,7 +20,7 @@ CFG_PATH = "/cfg/"
 CFG_FILE = "openBC.cfg"
 
 
-test = 0
+
 
 CFG = os.path.dirname(os.path.abspath(__file__)) + CFG_PATH + CFG_FILE
 OB = OpenBCcfg(CFG) # Read config file.
