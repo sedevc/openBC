@@ -21,6 +21,7 @@ CFG_FILE = "openBC.cfg"
 
 
 
+
 CFG = os.path.dirname(os.path.abspath(__file__)) + CFG_PATH + CFG_FILE
 OB = OpenBCcfg(CFG) # Read config file.
 time.sleep(2)
