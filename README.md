@@ -56,3 +56,11 @@ TODO
 
 Community (blog, twitter, mail list, IRC)
 =========================================
+
+
+Support
+-------
+
+If you need assistance, you can ask for help:
+
+* Email      : info@devc.io
