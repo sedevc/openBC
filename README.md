@@ -12,6 +12,15 @@ Requirements
 ------------
 
 * Python 2.7
+* Evok
+
+Hardware
+---------
+
+* Innovate LC-2 Lambda
+* Ebm-papst G1G120-AB67-02 centrifugal fan
+* 3 x DS18B20 Temperature sensor
+* 1 x K-Type Temperature sensor (high temperature 0-1000℃)
 
 Dependencies
 --------------------
@@ -27,7 +36,7 @@ Algorithms and Python packages:
 - **datetime**
 - **jsonrpclib**
 
-Bundled dependencies
+Bundled dependencies:
 - **Pid**
 - **Abio**
 - **Innovate_lambda**
