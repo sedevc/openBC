@@ -8,7 +8,7 @@ Overview
 --------
 
 
-
+Fully automatic controller for burning of biomass. wood chip, shavings and pellet
 
 
 
