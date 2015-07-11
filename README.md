@@ -2,7 +2,7 @@
 =========
 
 
-![GUI(]http://oi58.tinypic.com/slpp93.jpg)
+![GUI](http://oi58.tinypic.com/slpp93.jpg)
 
 Overview
 --------

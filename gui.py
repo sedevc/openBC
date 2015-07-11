@@ -35,7 +35,7 @@ def task():
 root = tk.Tk()
 root.geometry("%dx%d" % (800, 480))
 root.title('Autoburner V0.1')
-root.overrideredirect(1)
+#root.overrideredirect(1)
 # -------------------------------- #
 
 tTempVar = StringVar()
