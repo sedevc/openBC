@@ -38,21 +38,16 @@ Bundled dependencies:
 - **Innovate_lambda**
 - **Openbccfg**
 
-
 Install
 --------
-
 The quick way::
 
     pip install openbc
-
-
 
 TODO
 ----
 
 ### v0.1
-
 - [x] Set up PID
 - [x] Add suport for touchscreen
 - [x] Add suport for lambdasond
