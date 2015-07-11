@@ -4,7 +4,6 @@ from Tkinter import *
 import Tkinter as tk
 import ttk as ttk
 import PIL, tkFont
-from abio import TempSensor, AnalogOut, AnalogLambda, FireSensor
 import socket, json, os
 
 REST_SERVER_URL = "http://127.0.0.1:5000"
