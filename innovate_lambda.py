@@ -3,13 +3,13 @@ from jsonrpclib import Server
 import serial
 import time
 
-s = Server("http://127.0.0.1/rpc") # Connection to evok api
-
-DEVICE_NAME = "LC-2"
+# Uncomment.
+#s = Server("http://127.0.0.1/rpc") # Connection to evok api
+#DEVICE_NAME = "LC-2"
 #DEVICE_PORT = "/dev/ttyAMA0"
-DEVICE_PORT = "/dev/ttyUSB0"
-BAUD = 19200
-SYNC_HEADER_ATTEMPT = 10
+#DEVICE_PORT = "/dev/ttyUSB0"
+#BAUD = 19200
+#SYNC_HEADER_ATTEMPT = 10
 
 class SerialLambda(object):
 	def __init__(self, s, relay_pin, device_name, device_port, baud, sync_header_attempt):

@@ -8,6 +8,7 @@ Overview
 --------
 Hardware
 ---------
+* HDMI 7" 800x480 Display - With Touchscreen http://www.adafruit.com/products/2407
 * Raspberry Pi https://www.raspberrypi.org
 * UniPi http://unipi.technology
 * Innovate LC-2 Lambda http://www.innovatemotorsports.com/products/lc2.php
@@ -29,8 +30,8 @@ Algorithms and Python packages:
 - **Json**
 - **Threading**
 - **Logging**
-- **datetime**
-- **jsonrpclib**
+- **Datetime**
+- **Jsonrpclib**
 
 Bundled dependencies:
 - **Pid**
@@ -42,7 +43,7 @@ Install
 --------
 The quick way::
 
-    pip install openbc
+    .
 
 TODO
 ----
