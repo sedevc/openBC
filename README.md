@@ -15,17 +15,15 @@ Requirements
 Dependencies
 --------------------
 
+Evok, UniPi Software
+
 Algorithms and Python packages:
-
-- **Evok**, UniPi Software
-
 - **Socket**
 - **Json**
 - **Threading**
 - **Logging**
 
 Bundled dependencies
-
 - **Pid**
 - **Abio**
 - **Innovate_lambda**
