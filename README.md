@@ -8,9 +8,9 @@ Overview
 --------
 Hardware
 ---------
-* HDMI 7" 800x480 Display - With Touchscreen http://www.adafruit.com/products/2407
 * Raspberry Pi https://www.raspberrypi.org
 * UniPi http://unipi.technology
+* HDMI 7" 800x480 Display - With Touchscreen http://www.adafruit.com/products/2407
 * Innovate LC-2 Lambda http://www.innovatemotorsports.com/products/lc2.php
 * Ebm-papst G1G120-AB67-02 Centrifugal fan http://bit.ly/1dS4B1V
 * 3 x DS18B20 Temperature sensor
