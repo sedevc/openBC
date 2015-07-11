@@ -12,6 +12,25 @@ Requirements
 
 * Python 2.7
 
+Dependencies
+--------------------
+
+Algorithms and Python packages:
+
+- **Evok**, UniPi Software
+
+- **Socket**,
+- **Json**,
+- **Threading**,
+- **Logging**,
+
+Bundled dependencies
+
+- **Pid**,
+- **Abio**,
+- **Innovate_lambda**,
+- **openbccfg**,
+
 
 Install
 =======
