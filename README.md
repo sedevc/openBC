@@ -1,13 +1,21 @@
 # openBC
 =========
 
-![](http://oi59.tinypic.com/2pt5u0p.jpg)
 
+![GUI(]http://oi58.tinypic.com/slpp93.jpg)
 
 Overview
 --------
+
+
+
+
+
+
 Hardware
 ---------
+![](http://oi59.tinypic.com/2pt5u0p.jpg)
+
 * Raspberry Pi https://www.raspberrypi.org
 * UniPi http://unipi.technology
 * HDMI 7" 800x480 Display - With Touchscreen http://www.adafruit.com/products/2407
@@ -53,7 +61,7 @@ TODO
 - [x] Add suport for touchscreen
 - [x] Add suport for lambdasond
 - [ ] Lambda controll under closed loop condition
-- [ ] Add webi nterface
+- [ ] Add web interface
 
 
 Community (blog, twitter, mail list, IRC)
