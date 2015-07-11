@@ -16,12 +16,15 @@ Dependencies
 --------------------
 
 Evok, UniPi Software
+Follow this instructions: https://github.com/UniPiTechnology/evok
 
 Algorithms and Python packages:
 - **Socket**
 - **Json**
 - **Threading**
 - **Logging**
+- **datetime**
+- **jsonrpclib**
 
 Bundled dependencies
 - **Pid**
