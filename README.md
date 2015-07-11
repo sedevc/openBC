@@ -51,12 +51,13 @@ TODO
 - [x] Add suport for touchscreen
 - [x] Add suport for lambdasond
 - [ ] Lambda controll under closed loop condition
-- [ ] Add webinterface
+- [ ] Add webi nterface
 
 
 Community (blog, twitter, mail list, IRC)
 =========================================
 
+sedevc @ Twitter https://twitter.com/sedevc
 
 Support
 -------
