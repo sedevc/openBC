@@ -14,10 +14,12 @@ Hardware
 * Ebm-papst G1G120-AB67-02 Centrifugal fan http://bit.ly/1dS4B1V
 * 3 x DS18B20 Temperature sensor
 * 1 x K-Type Temperature sensor (high temperature 0-1000℃)
+
 Requirements
 ------------
 * Python 2.7
 * Evok
+
 Dependencies
 --------------------
 Evok, UniPi Software. Follow this instructions: https://github.com/UniPiTechnology/evok
