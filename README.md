@@ -19,17 +19,17 @@ Algorithms and Python packages:
 
 - **Evok**, UniPi Software
 
-- **Socket**,
-- **Json**,
-- **Threading**,
-- **Logging**,
+- **Socket**
+- **Json**
+- **Threading**
+- **Logging**
 
 Bundled dependencies
 
-- **Pid**,
-- **Abio**,
-- **Innovate_lambda**,
-- **openbccfg**,
+- **Pid**
+- **Abio**
+- **Innovate_lambda**
+- **Openbccfg**
 
 
 Install
