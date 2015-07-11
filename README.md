@@ -1,7 +1,7 @@
 # openBC
 =========
 
-
+![](http://oi59.tinypic.com/2pt5u0p.jpg)
 
 
 Overview
