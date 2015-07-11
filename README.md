@@ -1,14 +1,15 @@
 # openBC
+=========
 
 
 
 
 Overview
-========
+--------
 
 
 Requirements
-============
+------------
 
 * Python 2.7
 
@@ -34,7 +35,7 @@ Bundled dependencies
 
 
 Install
-=======
+--------
 
 The quick way::
 
