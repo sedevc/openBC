@@ -57,6 +57,7 @@ config.add_section('limits')
 config.set('limits', 'tank_set_temp', '30')
 config.set('limits', 'boiler_set_temp', '85')
 config.set('limits', 'fire_set_temp', '300')
+config.set('limits', 'lambda_set_value', '1.34')
 config.set('limits', 'idle_fire_set_temp', '200')
 
 config.add_section('fan')
