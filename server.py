@@ -2,7 +2,7 @@
 
 #!/usr/bin/env python
 import socket, sys, time, json, threading
-import logging, time, os, sys
+import logging, time, os, sys, os.path
 from pid import Pid
 from openbccfg import OpenBCcfg
 from jsonrpclib import Server
@@ -23,6 +23,7 @@ CFG_FILE = "openBC.cfg"
 
 
 CFG = os.path.dirname(os.path.abspath(__file__)) + CFG_PATH + CFG_FILE
+TIMESTAMP_CFG = time.ctime(os.path.getmtime(CFG))
 OB = OpenBCcfg(CFG)
 OB.readConfigFile() # Read config file.
 time.sleep(2)
@@ -72,6 +73,10 @@ t1.start()
 logging.info('%s', "Enter main loop")
 while True:
 	q.put(TANK.get_temp(), BOILER.get_temp(), FIRE.get_temp(), int(FAN.get_rpm()))								# UPPDATE VALUE FOR GUI
+	if not TIMESTAMP_CFG == time.ctime(os.path.getmtime(CFG)):
+		TIMESTAMP_CFG = time.ctime(os.path.getmtime(CFG))
+		OB.readConfigFile()
+		logging.info('%s', "Reload config file")
 	if not S.input_get_value(OB.BUTTON_EMERGENCY_STOP):															# EMRGENCY STOP PRESSED (NC BLOCK)
 		logging.info('%s', "Emergency stop pressed")
 		FAN.deactivate_contactor()
