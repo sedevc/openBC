@@ -3,11 +3,9 @@ import ConfigParser
 class OpenBCcfg(object):
 
 	def __init__(self, file_name):
-
 		self.config = ConfigParser.RawConfigParser()
 		self.file_name = file_name
-		
-	
+			
 	def readConfigFile(self):
 		self.config.read(self.file_name)
 
@@ -46,16 +44,14 @@ class OpenBCcfg(object):
 		self.BUTTON_MAN_SCREW_BACKWARD = self.config.get("control_button", "man_screw_backward_gpio")
 		self.BUTTON_MAN_FAN_FORWARD = self.config.get("control_button", "man_fan_forward_gpio")
 		self.BUTTON_RESET = self.config.get("control_button", "reset_gpio")
-		
-		
+				
 		self.BLOCK_TIME = self.config.get("timers", "block_time")
 		self.BLOCK_TIME_IDLE = self.config.get("timers", "block_time_idle")
 		self.RUN_TIME_FAN_IDLE = self.config.get("timers", "run_time_fan_idle")
 		self.RUN_TIME_SCREW = self.config.get("timers", "run_time_screw")
 		self.RUN_TIME_SCREW_IDLE = self.config.get("timers", "run_time_screw_idle")
 		self.LOG_BLOCK_TIME = self.config.get("timers", "log_block_time")
-		
-		
+				
 		self.TANK_SET_TEMP = self.config.get("limits", "tank_set_temp")
 		self.BOILER_SET_TEMP = self.config.get("limits", "boiler_set_temp")
 		self.FIRE_SET_TEMP = self.config.get("limits", "fire_set_temp")
@@ -80,8 +76,6 @@ class OpenBCcfg(object):
 		self.LOG_FILE_NAME = self.config.get("log", "file_name")
 
 	def WriteConfigFile(self):
-
-		
 		self.config.set('info', 'hw_name', self.HW_NAME)
 		self.config.set('info', 'ip', self.IP)
 		self.config.set('info', 'evok_url', self.EVOK_URL)
@@ -98,11 +92,9 @@ class OpenBCcfg(object):
 		self.config.set('tank_temp_sensor', 'file_name', self.TANK_TEMP_SENSOR_FILE_NAME)
 		self.config.set('tank_temp_sensor', 'id', self.TANK_TEMP_SENSOR_ID)
 
-
 		self.config.set('fire_temp_sensor', 'enabled', self.FIRE_TEMP_SENSOR_ENABLED)
 		self.config.set('fire_temp_sensor', 'type', self.FIRE_TEMP_SENSOR_TYPE)
 		self.config.set('fire_temp_sensor', 'analog_pin', self.FIRE_TEMP_SENSOR_ANALOG_PIN)
-
 
 		self.config.set('lambda_sensor', 'enabled', self.LAMBDA_SENSOR_ENABLED)
 		self.config.set('lambda_sensor', 'type', self.LAMBDA_SENSOR_TYPE)
@@ -112,7 +104,6 @@ class OpenBCcfg(object):
 		self.config.set('lambda_sensor', 'analog_pin', self.LAMBDA_SENSOR_ANALOG_PIN)
 		self.config.set('lambda_sensor', 'contactor_pin', self.LAMBDA_SENSOR_CONTACTOR_PIN)
 
-
 		self.config.set('control_button', 'contactor_pin', self.BUTTON_CONTACTOR_PIN)
 		self.config.set('control_button', 'emergency_stop_gpio', self.BUTTON_EMERGENCY_STOP)
 		self.config.set('control_button', 'auto_man_gpio', self.BUTTON_AUTO_MAN)
@@ -121,7 +112,6 @@ class OpenBCcfg(object):
 		self.config.set('control_button', 'man_fan_forward_gpio', self.BUTTON_MAN_FAN_FORWARD)
 		self.config.set('control_button', 'reset_gpio', self.BUTTON_RESET)
 
-
 		self.config.set('timers', 'block_time', self.BLOCK_TIME)
 		self.config.set('timers', 'block_time_idle', self.BLOCK_TIME_IDLE)
 		self.config.set('timers', 'run_time_fan_idle', self.RUN_TIME_FAN_IDLE)
@@ -129,13 +119,11 @@ class OpenBCcfg(object):
 		self.config.set('timers', 'run_time_screw_idle', self.RUN_TIME_SCREW_IDLE)
 		self.config.set('timers', 'log_block_time', self.LOG_BLOCK_TIME)
 
-
 		self.config.set('limits', 'tank_set_temp', self.TANK_SET_TEMP)
 		self.config.set('limits', 'boiler_set_temp', self.BOILER_SET_TEMP)
 		self.config.set('limits', 'fire_set_temp', self.FIRE_SET_TEMP)
 		self.config.set('limits', 'lambda_set_value', self.LAMBDA_SET_VALUE)
 		self.config.set('limits', 'idle_fire_set_temp', self.IDLE_FIRE_SET_TEMP)
-
 
 		self.config.set('fan', 'enabled', self.FAN_ENABLED)
 		self.config.set('fan', 'type', self.FAN_TYPE)
@@ -143,11 +131,9 @@ class OpenBCcfg(object):
 		self.config.set('fan', 'safe_mode_speed', self.FAN_SAFE_MODE_SPEED)
 		self.config.set('fan', 'contactor_pin', self.FAN_CONTACTOR_PIN)
 
-
 		self.config.set('screw', 'enabled', self.SCREW_ENABLED)
 		self.config.set('screw', 'type', self.SCREW_TYPE)
 		self.config.set('screw', 'contactor_pin', self.SCREW_CONTACTOR_PIN)
-
 
 		self.config.set('database', 'enabled', self.DATABASE_ENABLED)
 		self.config.set('database', 'type', self.DATABASE_TYPE)
