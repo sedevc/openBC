@@ -1,3 +1,4 @@
+from bottle import route, run, response
 import json
 
 class TempSensor(object):
@@ -105,3 +106,10 @@ class GuiData():
 		return self.data
 	def put(self, tank_temp, boiler_temp, fire_temp, fan_rpm):
 		self.data = json.dumps({'TANK': tank_temp, 'BOILER': boiler_temp, 'FIRE': fire_temp, 'FAN RPM': fan_rpm, })
+
+def startWebbServer(a):
+	@route('/api/status')
+	def returnstatus():
+		response.content_type = 'application/json'
+		return a.get()
+	run(host='0.0.0.0', port=8080)

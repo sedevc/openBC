@@ -3,11 +3,13 @@
 from Tkinter import *
 import Tkinter as tk
 import ttk as ttk
-import PIL, tkFont, socket, json, os
+import PIL, tkFont, socket, json, os, urllib
+from time import gmtime, strftime
 from openbccfg import OpenBCcfg
 import ConfigParser
 
-REST_SERVER_URL = "http://127.0.0.1:5000"
+
+REST_SERVER_URL = "http://127.0.0.1:8080/api/status"
 
 CFG_PATH = "/cfg/"
 CFG_FILE = "openBC.cfg"
@@ -20,19 +22,18 @@ OB = OpenBCcfg(CFG) # Read config file.
 #################################################################
 
 def task():
-	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	result = s.connect_ex(('127.0.0.1',8820))
-	if result == 0:
-		try:
-			result = json.loads(s.recv(1024))
-			tTempVar.set(str(result['TANK']) + "℃")
-			bTempVar.set(str(int(result['BOILER'])) + "℃")
-			fTempVar.set(str(int(result['FIRE'])) + "℃")
-			fanRpmVar.set(str(int(result['FAN RPM'])) + "rpm")
-			print result
-		except:
-			pass
-	s.close()
+	try:
+		response = urllib.urlopen(REST_SERVER_URL);
+		result = json.loads(response.read())
+		tTempVar.set(str(result['TANK']) + "℃")
+		bTempVar.set(str(int(result['BOILER'])) + "℃")
+		fTempVar.set(str(int(result['FIRE'])) + "℃")
+		fanRpmVar.set(str(int(result['FAN RPM'])) + "rpm")
+		serverStatusVar.set("ONLINE")
+		print result
+	except:
+		serverStatusVar.set("OFFLINE")
+	timeStatusVar.set(str(strftime("%Y-%m-%d %H:%M:%S", gmtime())))
 	root.after(1000,task)
 
 
@@ -67,6 +68,11 @@ tTempVar = StringVar()
 bTempVar = StringVar()
 fTempVar = StringVar()
 fanRpmVar = StringVar()
+timeStatusVar = StringVar()
+serverStatusVar = StringVar()
+timeStatusVar.set(str(strftime("%Y-%m-%d %H:%M:%S", gmtime())))
+
+
 
 tScaleInt = IntVar()
 bScaleInt = IntVar()
@@ -109,7 +115,11 @@ background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 # ℃
 
-# ---------- Labels ------------- #
+
+# ---------- Status ------------- #
+#serverStatus = Label(status, textvariable=serverStatusVar, fg="black", font=("Helvetica", 12))
+#serverStatus.place(x=700, y=0)
+
 tTempLabel = Label(status, textvariable=tTempVar, fg="black", font=("Helvetica", 16))
 tTempLabel.place(x=103, y=120)
 
@@ -124,11 +134,21 @@ LambdaLabel.place(x=265, y=146)
 
 FanLabel = Label(status, textvariable=fanRpmVar, fg="black", font=("Helvetica", 12))
 FanLabel.place(x=510, y=190)
+
+statusBar = Label(status, bd=1, relief=SUNKEN, anchor=W, font=("Helvetica", 10))
+statusBar.pack(side=BOTTOM ,fill=X)
+
+timeStatus = Label(statusBar, textvariable=timeStatusVar, bd=1, relief=SUNKEN, anchor=W, font=("Helvetica", 10))
+timeStatus.pack(side=LEFT)
+
+serverStatus = Label(statusBar, textvariable=serverStatusVar, bd=1, relief=SUNKEN, anchor=W, font=("Helvetica", 10))
+serverStatus.pack(side=RIGHT)
+
 # ------------------------------- #
 
 GetScaleValues()
 
-# ---------- Slides ------------- #
+# ---------- Settings ------------- #
 
 tankLabel = Label(settings, font=("Helvetica", 13), text="Tank target ℃")
 tankLabel.grid(sticky=SE, row=0, column=0)

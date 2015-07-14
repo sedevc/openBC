@@ -6,29 +6,23 @@ import logging, time, os, sys, os.path
 from pid import Pid
 from openbccfg import OpenBCcfg
 from jsonrpclib import Server
-from abio import TempSensor, AnalogOut, AnalogLambda, FireSensor, Screw, Hmi, GuiData
+from abio import TempSensor, AnalogOut, AnalogLambda, FireSensor, Screw, Hmi, GuiData, startWebbServer
 from innovate_lambda import SerialLambda
 from datetime import datetime
 
-
 q = GuiData()
-
-HOST = '127.0.0.1'   # Symbolic name, meaning all available interfaces
-PORT = 8820 # Arbitrary non-privileged port
 
 CFG_PATH = "/cfg/"
 CFG_FILE = "openBC.cfg"
 
-
-
-
 CFG = os.path.dirname(os.path.abspath(__file__)) + CFG_PATH + CFG_FILE
-TIMESTAMP_CFG = time.ctime(os.path.getmtime(CFG))
+
 OB = OpenBCcfg(CFG)
 OB.readConfigFile() # Read config file.
 time.sleep(2)
 S = Server(OB.EVOK_URL) # Connection to evok api
 
+TIMESTAMP_CFG = time.ctime(os.path.getmtime(CFG))
 TEMP_SCREW_BLOCK_TIMER = time.time() # Read current time, need this for screw controll
 TEMP_LOG_BLOCK_TIMER = time.time()
 
@@ -58,22 +52,13 @@ p.setPoint(30)
 HMI.activate_contactor() # Activate HMI buttons
 
 
-def GuiServer(q):
-	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	s.bind((HOST, PORT))
-	s.listen(10)
-	while 1:
-		conn, addr = s.accept()
-		conn.send(q.get())
-	conn.close()
-
-t1 = threading.Thread(target=GuiServer, args=(q,))
-t1.start()
+t1 = threading.Thread(target=startWebbServer, args=(q,))
+t1.start()																										# START WEBBSERVER IN NEW THRED
 
 logging.info('%s', "Enter main loop")
 while True:
 	q.put(TANK.get_temp(), BOILER.get_temp(), FIRE.get_temp(), int(FAN.get_rpm()))								# UPPDATE VALUE FOR GUI
-	if not TIMESTAMP_CFG == time.ctime(os.path.getmtime(CFG)):
+	if not TIMESTAMP_CFG == time.ctime(os.path.getmtime(CFG)):													# RELOAD CONFIG IF TIMESTAMP CHANGED
 		TIMESTAMP_CFG = time.ctime(os.path.getmtime(CFG))
 		OB.readConfigFile()
 		logging.info('%s', "Reload config file")
