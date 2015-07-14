@@ -3,10 +3,10 @@
 from Tkinter import *
 import Tkinter as tk
 import ttk as ttk
-import PIL, tkFont, socket, json, os, urllib
+import PIL, tkFont, socket, json, os, urllib, ConfigParser
 from time import gmtime, strftime
 from openbccfg import OpenBCcfg
-import ConfigParser
+
 
 
 REST_SERVER_URL = "http://127.0.0.1:8080/api/status"
@@ -16,7 +16,7 @@ CFG_FILE = "openBC.cfg"
 CFG = os.path.dirname(os.path.abspath(__file__)) + CFG_PATH + CFG_FILE
 
 
-OB = OpenBCcfg(CFG) # Read config file.
+OB = OpenBCcfg(CFG) 
 #################################################################
 ######################### GUI ###################################
 #################################################################
