@@ -34,7 +34,7 @@ class AnalogOut(object):
 		self.s.ao_set_value(self.analog_pin, self.voltage)
 	def get_rpm(self):
 			temp = self.translate(self.voltage)
-			if temp < 1.2 or self.contactor == False:
+			if temp < 244 or self.contactor == False:
 				return 0
 			elif temp > 2200:
 				return 2200
@@ -104,8 +104,8 @@ class GuiData():
 		self.data = ""
 	def get(self):
 		return self.data
-	def put(self, tank_temp, boiler_temp, fire_temp, fan_rpm):
-		self.data = json.dumps({'TANK': tank_temp, 'BOILER': boiler_temp, 'FIRE': fire_temp, 'FAN RPM': fan_rpm, })
+	def put(self, tank_temp, boiler_temp, fire_temp, fan_rpm, mode, time_left):
+		self.data = json.dumps({'TANK': tank_temp, 'BOILER': boiler_temp, 'FIRE': fire_temp, 'FAN RPM': fan_rpm, 'AUTO': mode, 'TIMER': time_left})
 
 def startWebbServer(a):
 	@route('/api/status')

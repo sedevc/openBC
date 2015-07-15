@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 from Tkinter import *
 import Tkinter as tk
-import ttk as ttk
-import PIL, tkFont, socket, json, os, urllib, ConfigParser
+import PIL, tkFont, socket, json, os, urllib, ConfigParser, ttk
 from time import gmtime, strftime
 from openbccfg import OpenBCcfg
 
@@ -29,6 +28,11 @@ def task():
 		bTempVar.set(str(int(result['BOILER'])) + "℃")
 		fTempVar.set(str(int(result['FIRE'])) + "℃")
 		fanRpmVar.set(str(int(result['FAN RPM'])) + "rpm")
+		timeLeftVar.set( "BLOCK TIMER " + str(int(result['TIMER'])) + " (S)")
+		if result['AUTO'] == 0:
+			serverModeVar.set("MODE: MANUAL")
+		else:
+			serverModeVar.set("MODE: AUTO   ")
 		serverStatusVar.set("ONLINE")
 		print result
 	except:
@@ -46,6 +50,7 @@ def GetScaleValues():
 	lScaleFloat.set(float(OB.LAMBDA_SET_VALUE))
 	blockTimeInt.set(int(OB.BLOCK_TIME))
 	screwRuntimeInt.set(int(OB.RUN_TIME_SCREW))
+
 
 def SetScaleValues():
 	OB.TANK_SET_TEMP = str(tScaleInt.get())
@@ -70,8 +75,9 @@ fTempVar = StringVar()
 fanRpmVar = StringVar()
 timeStatusVar = StringVar()
 serverStatusVar = StringVar()
+serverModeVar = StringVar()
 timeStatusVar.set(str(strftime("%Y-%m-%d %H:%M:%S", gmtime())))
-
+timeLeftVar = StringVar()
 
 
 tScaleInt = IntVar()
@@ -138,11 +144,19 @@ FanLabel.place(x=510, y=190)
 statusBar = Label(status, bd=1, relief=SUNKEN, anchor=W, font=("Helvetica", 10))
 statusBar.pack(side=BOTTOM ,fill=X)
 
-timeStatus = Label(statusBar, textvariable=timeStatusVar, bd=1, relief=SUNKEN, anchor=W, font=("Helvetica", 10))
-timeStatus.pack(side=LEFT)
+timeStatus = Label(statusBar, textvariable=timeStatusVar, bd=1, relief=SUNKEN, anchor=CENTER, font=("Helvetica", 10))
+timeStatus.pack(side=LEFT, ipadx=10)
 
-serverStatus = Label(statusBar, textvariable=serverStatusVar, bd=1, relief=SUNKEN, anchor=W, font=("Helvetica", 10))
-serverStatus.pack(side=RIGHT)
+serverStatus = Label(statusBar, textvariable=serverStatusVar, bd=1, relief=SUNKEN, anchor=CENTER, font=("Helvetica", 10))
+serverStatus.pack(side=RIGHT, ipadx=10)
+
+serverMode = Label(statusBar, textvariable=serverModeVar, bd=1, relief=SUNKEN, anchor=CENTER, font=("Helvetica", 10))
+serverMode.pack(side=LEFT, ipadx=10)
+
+timeLeft = Label(statusBar, textvariable=timeLeftVar, bd=1, relief=SUNKEN, anchor=CENTER, font=("Helvetica", 10))
+timeLeft.pack(side=LEFT, ipadx=10)
+
+
 
 # ------------------------------- #
 

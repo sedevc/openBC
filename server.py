@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 #!/usr/bin/env python
-import socket, sys, time, json, threading
-import logging, time, os, sys, os.path
+import json, threading, logging, time, os, sys, os.path
 from pid import Pid
 from openbccfg import OpenBCcfg
 from jsonrpclib import Server
@@ -25,6 +24,7 @@ S = Server(OB.EVOK_URL) # Connection to evok api
 TIMESTAMP_CFG = time.ctime(os.path.getmtime(CFG))
 TEMP_SCREW_BLOCK_TIMER = time.time() # Read current time, need this for screw controll
 TEMP_LOG_BLOCK_TIMER = time.time()
+TIME_LEFT_OF_BLOCK_TIMER = 0
 
 # Make sure all relay is deactivated
 for x in xrange(1,9):
@@ -57,7 +57,7 @@ t1.start()																										# START WEBBSERVER IN NEW THRED
 
 logging.info('%s', "Enter main loop")
 while True:
-	q.put(TANK.get_temp(), BOILER.get_temp(), FIRE.get_temp(), int(FAN.get_rpm()))								# UPPDATE VALUE FOR GUI
+	q.put(TANK.get_temp(), BOILER.get_temp(), FIRE.get_temp(), int(FAN.get_rpm()), S.input_get_value(OB.BUTTON_AUTO_MAN), TIME_LEFT_OF_BLOCK_TIMER)# UPPDATE VALUE FOR GUI
 	if not TIMESTAMP_CFG == time.ctime(os.path.getmtime(CFG)):													# RELOAD CONFIG IF TIMESTAMP CHANGED
 		TIMESTAMP_CFG = time.ctime(os.path.getmtime(CFG))
 		OB.readConfigFile()
@@ -84,6 +84,7 @@ while True:
 				if not FAN.contactor:																			# ACTIVATE FAN
 					logging.info('%s', "FAN Activate contactor")
 					FAN.activate_contactor()
+			TIME_LEFT_OF_BLOCK_TIMER = int((int(TEMP_SCREW_BLOCK_TIMER) + int(OB.BLOCK_TIME)) - time.time())
 			if time.time() > (int(TEMP_SCREW_BLOCK_TIMER) + int(OB.BLOCK_TIME)): 								# TIMER BELOW BLOCKTIMER?
 				if FIRE.get_temp() <= float(OB.FIRE_SET_TEMP):													# FIRE BELOW SET TEMP?
 					if TANK.get_temp() <= float(OB.TANK_SET_TEMP):												# TANK BELOW SET TEMP?
@@ -115,7 +116,7 @@ while True:
 				FAN.set_voltage(int(OB.FAN_SAFE_MODE_SPEED))
 				logging.info('%s', "MAN Fan pressed")
 				while S.input_get_value(OB.BUTTON_MAN_FAN_FORWARD):												
-					q.put(TANK.get_temp(), BOILER.get_temp(), FIRE.get_temp(), int(FAN.get_rpm()))				# UPPDATE VALUE FOR GUI
+					q.put(TANK.get_temp(), BOILER.get_temp(), FIRE.get_temp(), int(FAN.get_rpm()), S.input_get_value(OB.BUTTON_AUTO_MAN), TIME_LEFT_OF_BLOCK_TIMER)# UPPDATE VALUE FOR GUI
 					if S.input_get_value(OB.BUTTON_RESET): 														# REBOOT (MAN FAN + RESET)
 						os.system("sudo reboot")
 				logging.info('%s', "MAN Fan released")
